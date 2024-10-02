@@ -8,6 +8,9 @@ import Excercise from './Excercise';
 import Variable from './Variable'; 
 import Datatype from './Datatype'; 
 import Operators from './Operators'; 
+import StateManagement from './StateManagement'; 
+import Form from './Form'; 
+import ToggleButton from './ToggleButton'; 
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
               <li><Link to="/variable">Variable</Link></li>
               <li><Link to="/datatype">Datatype</Link></li>
               <li><Link to="/operators">Operators</Link></li>
+              <li><Link to="/state_management">State Management</Link></li>
+              <li><Link to="/form">Form</Link></li>
+              <li><Link to="/toggleButton">ToggleButton</Link></li>
             </ul>
           </nav>
         </header>
@@ -35,6 +41,9 @@ function App() {
           <Route path="/variable" element={<Variable />} />
           <Route path="/datatype" element={<Datatype />} />
           <Route path="/operators" element={<Operators />} />
+          <Route path="/state_management" element={<StateManagement />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/toggleButton" element={<ToggleButton />} />
         </Routes>
       </div>
     </Router>
