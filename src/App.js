@@ -11,6 +11,7 @@ import Operators from './Operators';
 import StateManagement from './StateManagement'; 
 import Form from './Form'; 
 import ToggleButton from './ToggleButton'; 
+import Registration from './Registration'; 
 
 function App() {
   return (
@@ -29,11 +30,12 @@ function App() {
               <li><Link to="/state_management">State Management</Link></li>
               <li><Link to="/form">Form</Link></li>
               <li><Link to="/toggleButton">ToggleButton</Link></li>
+              <li><Link to="/registration">Registration</Link></li>
             </ul>
           </nav>
         </header>
         
-        {/* Define Routes for different pages */}
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -44,6 +46,7 @@ function App() {
           <Route path="/state_management" element={<StateManagement />} />
           <Route path="/form" element={<Form />} />
           <Route path="/toggleButton" element={<ToggleButton />} />
+          <Route path="/registration" element={<Registration />} />
         </Routes>
       </div>
     </Router>

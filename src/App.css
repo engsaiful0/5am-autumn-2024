@@ -16,14 +16,35 @@
 .App-header {
   background-color: #282c34;
   min-height: 30vh;
+  list-style-type: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0;          
+  margin: 0; 
+}
+.App-header ul {
+  list-style-type: none; /* Removes bullets */
+  display: flex;         /* Displays the items in a row (flex container) */
+  padding: 0;            /* Removes default padding */
+  margin: 0;             /* Removes default margin */
 }
 
+.App-header li {
+  margin: 0 15px;        /* Adds some space between the items */
+}
+
+.App-header a {
+  color: #61dafb;        /* Change the color to match your theme */
+  text-decoration: none; /* Removes underline */
+}
+
+.App-header a:hover {
+  text-decoration: underline; /* Adds underline on hover */
+}
 .App-link {
   color: #61dafb;
 }
