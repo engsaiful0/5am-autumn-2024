@@ -12,6 +12,7 @@ import StateManagement from './StateManagement';
 import Form from './Form'; 
 import ToggleButton from './ToggleButton'; 
 import Registration from './Registration'; 
+import RegistrationWithImage from './RegistrationWithImage'; 
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <li><Link to="/form">Form</Link></li>
               <li><Link to="/toggleButton">ToggleButton</Link></li>
               <li><Link to="/registration">Registration</Link></li>
+              <li><Link to="/registrationWithImage">Registration  With Image</Link></li>
             </ul>
           </nav>
         </header>
@@ -47,6 +49,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/toggleButton" element={<ToggleButton />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/registrationWithImage" element={<RegistrationWithImage />} />
         </Routes>
       </div>
     </Router>

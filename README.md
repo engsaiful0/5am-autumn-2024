@@ -72,4 +72,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #package
 npm install bootstrap
 npm install react-bootstrap bootstrap
+npm install react-toastify
+
 

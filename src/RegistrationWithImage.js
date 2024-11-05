@@ -4,7 +4,7 @@ import { Card, Spinner } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Registration() {
+function RegistrationWithImage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,12 +13,13 @@ function Registration() {
     gender: '',
     hobbies: [],
     department: '',
+    file: null, // Add file state
   });
 
   const [loading, setLoading] = useState(false); // State for loading spinner
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
 
     if (type === 'checkbox') {
       setFormData((prevData) => {
@@ -28,7 +29,7 @@ function Registration() {
         return { ...prevData, hobbies: updatedHobbies };
       });
     } else if (type === 'file') {
-      setFormData((prevData) => ({ ...prevData, file: e.target.files[0] }));
+      setFormData((prevData) => ({ ...prevData, file: files[0] }));
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -38,19 +39,33 @@ function Registration() {
     e.preventDefault();
     setLoading(true); // Show loader when submitting
 
+    // Create a FormData object to hold both text fields and file
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('name', formData.name);
+    formDataToSubmit.append('email', formData.email);
+    formDataToSubmit.append('date', formData.date);
+    formDataToSubmit.append('time', formData.time);
+    formDataToSubmit.append('gender', formData.gender);
+    formDataToSubmit.append('department', formData.department);
+
+    // Append each hobby as a separate item in FormData
+    formData.hobbies.forEach((hobby) => formDataToSubmit.append('hobbies[]', hobby));
+
+    // Append the file if it exists
+    if (formData.file) {
+      formDataToSubmit.append('file', formData.file);
+    }
+
     try {
-      const response = await fetch('http://localhost:5000/api/studentDetails/studentRegisterDetails', {
+      const response = await fetch('http://localhost:5000/api/studentDetails/studentRegisterDetailsWithImage', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSubmit, // Use FormData as the body
       });
 
       const data = await response.json();
       toast.success('Form submitted successfully!'); // Show success toast
       if (response.ok) {
-        //  reset form
+        // Reset form
         setFormData({
           name: '',
           email: '',
@@ -59,6 +74,7 @@ function Registration() {
           gender: '',
           hobbies: [],
           department: '',
+          file: null, // Reset file field
         });
       } else {
         console.error('Failed to submit form:', data);
@@ -79,8 +95,7 @@ function Registration() {
         <Card.Body>
           <h2>Registration Form</h2>
           <form onSubmit={handleSubmit} className="form-horizontal">
-            {/* Form fields */}
-            <div className="form-group row">
+          <div className="form-group row">
               <label className="col-sm-2 col-form-label">Name</label>
               <div className="col-sm-10">
                 <input
@@ -221,6 +236,18 @@ function Registration() {
             </div>
 
             <div className="form-group row mt-2">
+              <label className="col-sm-2 col-form-label">Upload File</label>
+              <div className="col-sm-10">
+                <input
+                  type="file"
+                  className="form-control"
+                  name="file"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="form-group row mt-2">
               <div className="col-sm-1 offset-sm-2">
                 <button type="submit" className="btn btn-primary" disabled={loading}>
                   {loading ? <Spinner animation="border" size="sm" /> : 'Submit'}
@@ -234,4 +261,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default RegistrationWithImage;
