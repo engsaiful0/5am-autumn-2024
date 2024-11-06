@@ -13,7 +13,7 @@ function RegistrationWithImage() {
     gender: '',
     hobbies: [],
     department: '',
-    file: null, // Add file state
+    profileImage: null, // Add file state
   });
 
   const [loading, setLoading] = useState(false); // State for loading spinner
@@ -29,7 +29,7 @@ function RegistrationWithImage() {
         return { ...prevData, hobbies: updatedHobbies };
       });
     } else if (type === 'file') {
-      setFormData((prevData) => ({ ...prevData, file: files[0] }));
+      setFormData((prevData) => ({ ...prevData, profileImage: files[0] }));
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -52,8 +52,8 @@ function RegistrationWithImage() {
     formData.hobbies.forEach((hobby) => formDataToSubmit.append('hobbies[]', hobby));
 
     // Append the file if it exists
-    if (formData.file) {
-      formDataToSubmit.append('file', formData.file);
+    if (formData.profileImage) {
+      formDataToSubmit.append('profileImage', formData.profileImage);
     }
 
     try {
@@ -74,7 +74,7 @@ function RegistrationWithImage() {
           gender: '',
           hobbies: [],
           department: '',
-          file: null, // Reset file field
+          profileImage: null, // Reset file field
         });
       } else {
         console.error('Failed to submit form:', data);
@@ -241,7 +241,7 @@ function RegistrationWithImage() {
                 <input
                   type="file"
                   className="form-control"
-                  name="file"
+                  name="profileImage"
                   onChange={handleChange}
                 />
               </div>
