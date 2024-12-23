@@ -74,4 +74,13 @@ npm install bootstrap
 npm install react-bootstrap bootstrap
 npm install react-toastify
 
+#for stripe payment
+npm install @stripe/react-stripe-js @stripe/stripe-js
+
+
+Card: 4242 4242 4242
+dd/MM: 12/34
+CVC:123
+ZIP: 12345
+
 
